@@ -29,7 +29,7 @@ jobs:
         #persist-credentials: false
 
     - name: Configure AWS credentials
-      uses: ./gdcorp-actions/aws-okta-authenticate
+      uses: gdcorp-actions/aws-okta-authenticate@7427e53fb0ad13199b9f4372a787e5f22e3f758d
       with:
         aws-okta-user: ${{ secrets.AWS_DEV_PRIVATE_JOMAX_USER}}
         aws-okta-pass: ${{ secrets.AWS_DEV_PRIVATE_JOMAX_PASS}}
