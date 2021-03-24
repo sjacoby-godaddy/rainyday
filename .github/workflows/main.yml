@@ -25,8 +25,8 @@ jobs:
       with: 
         repository: gdcorp-actions/aws-okta-authenticate
         token: ${{ secrets.GD_ACTIONS_REPO_PAT }} # PAT with read access 
-        #path: gd-actions
-        persist-credentials: false
+        path: aws-okta-authenticate
+        #persist-credentials: false
 
     - name: Configure AWS credentials
       uses: ./gdcorp-actions/aws-okta-authenticate
