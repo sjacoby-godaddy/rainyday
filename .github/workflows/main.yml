@@ -20,16 +20,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout GoDaddy Actions
-      uses: actions/checkout@25a956c84d5dd820d28caab9f86b8d183aeeff3d
-      with: 
+    - name: Check out aws-okta-authenticate action
+      uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+      with:
         repository: gdcorp-actions/aws-okta-authenticate
-        token: ${{ secrets.GD_ACTIONS_REPO_PAT }} # PAT with read access 
-        path: aws-okta-authenticate
-        #persist-credentials: false
+        token: ${{ secrets.GD_ACTIONS_REPO_PAT }}
+        #path: update-cloud-service-credentials
 
     - name: Configure AWS credentials
-      uses: gdcorp-actions/aws-okta-authenticate@7427e53fb0ad13199b9f4372a787e5f22e3f758d
+      uses: ./aws-okta-authenticate
       with:
         aws-okta-user: ${{ secrets.AWS_DEV_PRIVATE_JOMAX_USER}}
         aws-okta-pass: ${{ secrets.AWS_DEV_PRIVATE_JOMAX_PASS}}
