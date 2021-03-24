@@ -24,7 +24,6 @@ jobs:
       uses: actions/checkout@25a956c84d5dd820d28caab9f86b8d183aeeff3d
       with: 
         repository: gdcorp-actions/aws-okta-authenticate
-        ref: v1 # The version of gdcorp-cp/gd-actions to check out
         token: ${{ secrets.GD_ACTIONS_REPO_PAT }} # PAT with read access 
         #path: gd-actions
         persist-credentials: false
