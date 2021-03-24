@@ -21,7 +21,7 @@ jobs:
 
     steps:
     - name: Checkout GoDaddy Actions
-      uses: actions/checkout@v01aeccc
+      uses: actions/checkout@25a956c84d5dd820d28caab9f86b8d183aeeff3d
       with: 
         repository: gdcorp-cp/gd-actions
         ref: v1 # The version of gdcorp-cp/gd-actions to check out
