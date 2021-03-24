@@ -21,7 +21,7 @@ jobs:
 
     steps:
     - name: Check out aws-okta-authenticate action
-      uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+      uses: actions/checkout@25a956c84d5dd820d28caab9f86b8d183aeeff3d
       with:
         repository: gdcorp-actions/aws-okta-authenticate
         token: ${{ secrets.GD_ACTIONS_REPO_PAT }}
