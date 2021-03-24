@@ -34,7 +34,8 @@ jobs:
         aws-okta-pass: ${{ secrets.AWS_DEV_PRIVATE_JOMAX_PASS}}
         aws-okta-organization: godaddy.okta.com
         aws-okta-application: https://godaddy.okta.com/home/amazon_aws/0oakmpp1rkb2ZuZsQ0x7/272 # non-pci
-        aws-okta-role: arn:aws:iam::664122783931:role/GD-AWS-USA-CTO-JenkinsonAWS-Dev-Private-Deploy # full-arn-to-dev-private-deploy-role
+        #aws-okta-role: arn:aws:iam::664122783931:role/GD-AWS-USA-CTO-JenkinsonAWS-Dev-Private-Deploy # full-arn-to-dev-private-deploy-role
+        aws-okta-role: arn:aws:sts::664122783931:assumed-role/GD-AWS-USA-CTO-JenkinsonAWS-Dev-Private-PowerUser/sjacoby@godaddy.com
         aws-region: us-west-2
 
     - name: Login to Amazon ECR
