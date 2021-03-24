@@ -27,16 +27,16 @@ jobs:
         aws-okta-pass: {{ secrets.AWS_DEV_PRIVATE_JOMAX_PASS}}
         aws-okta-organization: godaddy.okta.com
         aws-okta-application: https://godaddy.okta.com/home/amazon_aws/0oakmpp1rkb2ZuZsQ0x7/272 # non-pci
-		aws-okta-role: arn:aws:iam::664122783931:role/GD-AWS-USA-CTO-JenkinsonAWS-Dev-Private-Deploy # full-arn-to-dev-private-deploy-role
+        aws-okta-role: arn:aws:iam::664122783931:role/GD-AWS-USA-CTO-JenkinsonAWS-Dev-Private-Deploy # full-arn-to-dev-private-deploy-role
         aws-region: us-west-2
 
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@41032bd0f8164c350fb597a5e1ec886624de7465
-	  
+
     - name: Pull image from Amazon ECR
       env:
-	    AWS_REGION: us-west-2
+        AWS_REGION: us-west-2
         ECR_REGISTRY: 764525110978.dkr.ecr.$AWS_REGION.amazonaws.com
         ECR_REPOSITORY: alpine
         IMAGE_TAG: 3.12
