@@ -1,0 +1,54 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  deploy:
+    name: Connect AWS ECR
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out aws-okta-authenticate action
+      #uses: actions/checkout@25a956c84d5dd820d28caab9f86b8d183aeeff3d
+      uses: ./aws-okta-authenticate
+      with:
+        repository: gdcorp-actions/aws-okta-authenticate
+        token: ${{ secrets.GD_ACTIONS_REPO_PAT }}
+        path: aws-okta-authenticate2
+
+    - name: Configure AWS credentials
+      uses: ./aws-okta-authenticate2
+      with:
+        aws-okta-user: ${{ secrets.AWS_DEV_PRIVATE_JOMAX_USER}}
+        aws-okta-pass: ${{ secrets.AWS_DEV_PRIVATE_JOMAX_PASS}}
+        aws-okta-organization: godaddy.okta.com
+        aws-okta-application: https://godaddy.okta.com/home/amazon_aws/0oakmpp1rkb2ZuZsQ0x7/272 # non-pci
+        #aws-okta-role: arn:aws:iam::664122783931:role/GD-AWS-USA-CTO-JenkinsonAWS-Dev-Private-Deploy # full-arn-to-dev-private-deploy-role
+        aws-okta-role: arn:aws:sts::664122783931:assumed-role/GD-AWS-USA-CTO-JenkinsonAWS-Dev-Private-PowerUser/sjacoby@godaddy.com
+        #aws-okta-role: arn:aws:iam::664122783931:role/GD-AWS-USA-CTO-JenkinsonAWS-Dev-Private-PowerUser
+        aws-region: us-west-2
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@41032bd0f8164c350fb597a5e1ec886624de7465
+
+    - name: Pull image from Amazon ECR
+      env:
+        AWS_REGION: us-west-2
+        ECR_REGISTRY: 764525110978.dkr.ecr.$AWS_REGION.amazonaws.com
+        ECR_REPOSITORY: alpine
+        IMAGE_TAG: 3.12
+      run: |
+        docker pull -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
