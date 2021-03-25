@@ -40,4 +40,4 @@ jobs:
         ECR_REPOSITORY: alpine
         IMAGE_TAG: 3.12
       run: |
-        docker pull -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
