@@ -22,14 +22,14 @@ jobs:
     steps:
     - name: Check out aws-okta-authenticate action
       #uses: actions/checkout@25a956c84d5dd820d28caab9f86b8d183aeeff3d
-      uses: ./aws-okta-authenticate
+      uses: sjacoby-godaddy/aws-okta-authenticate@888924803441bc8a9db5f0b2f896eb9d4c8c378d
       with:
         repository: gdcorp-actions/aws-okta-authenticate
         token: ${{ secrets.GD_ACTIONS_REPO_PAT }}
-        path: aws-okta-authenticate2
+        path: aws-okta-authenticate
 
     - name: Configure AWS credentials
-      uses: ./aws-okta-authenticate2
+      uses: ./aws-okta-authenticate
       with:
         aws-okta-user: ${{ secrets.AWS_DEV_PRIVATE_JOMAX_USER}}
         aws-okta-pass: ${{ secrets.AWS_DEV_PRIVATE_JOMAX_PASS}}
