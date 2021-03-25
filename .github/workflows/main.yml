@@ -39,4 +39,5 @@ jobs:
         ECR_REPOSITORY: alpine
         IMAGE_TAG: 3.12
       run: |
+        aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin $ECR_REGISTRY
         docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
