@@ -21,12 +21,12 @@ jobs:
 
     steps:
     - name: Check out aws-okta-authenticate action
-      #uses: actions/checkout@25a956c84d5dd820d28caab9f86b8d183aeeff3d
-      uses: sjacoby-godaddy/aws-okta-authenticate@888924803441bc8a9db5f0b2f896eb9d4c8c378d
+      uses: actions/checkout@25a956c84d5dd820d28caab9f86b8d183aeeff3d
+      #uses: sjacoby-godaddy/aws-okta-authenticate@888924803441bc8a9db5f0b2f896eb9d4c8c378d
       with:
-        #repository: gdcorp-actions/aws-okta-authenticate
-        repository: sjacoby-godaddy/aws-okta-authenticate
-        #token: ${{ secrets.GD_ACTIONS_REPO_PAT }}
+        repository: gdcorp-actions/aws-okta-authenticate
+        #repository: sjacoby-godaddy/aws-okta-authenticate
+        token: ${{ secrets.GD_ACTIONS_REPO_PAT }}
         path: aws-okta-authenticate
 
     - name: Configure AWS credentials
@@ -37,8 +37,8 @@ jobs:
         aws-okta-organization: godaddy.okta.com
         aws-okta-application: https://godaddy.okta.com/home/amazon_aws/0oakmpp1rkb2ZuZsQ0x7/272 # non-pci
         #aws-okta-role: arn:aws:iam::664122783931:role/GD-AWS-USA-CTO-JenkinsonAWS-Dev-Private-Deploy # full-arn-to-dev-private-deploy-role
-        aws-okta-role: arn:aws:sts::664122783931:assumed-role/GD-AWS-USA-CTO-JenkinsonAWS-Dev-Private-PowerUser/sjacoby@godaddy.com
-        #aws-okta-role: arn:aws:iam::664122783931:role/GD-AWS-USA-CTO-JenkinsonAWS-Dev-Private-PowerUser
+        #aws-okta-role: arn:aws:sts::664122783931:assumed-role/GD-AWS-USA-CTO-JenkinsonAWS-Dev-Private-PowerUser/sjacoby@godaddy.com
+        aws-okta-role: arn:aws:iam::664122783931:role/GD-AWS-USA-CTO-JenkinsonAWS-Dev-Private-PowerUser
         aws-region: us-west-2
 
     - name: Login to Amazon ECR
