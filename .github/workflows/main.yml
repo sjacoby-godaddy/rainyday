@@ -26,7 +26,7 @@ jobs:
       with:
         #repository: gdcorp-actions/aws-okta-authenticate
         repository: sjacoby-godaddy/aws-okta-authenticate
-        token: ${{ secrets.GD_ACTIONS_REPO_PAT }}
+        #token: ${{ secrets.GD_ACTIONS_REPO_PAT }}
         path: aws-okta-authenticate
 
     - name: Configure AWS credentials
