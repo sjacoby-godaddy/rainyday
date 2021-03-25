@@ -35,13 +35,13 @@ jobs:
 
     - name: Pull image from Amazon ECR
       env:
-        AWS-REGION: us-west-2
-        ECR_REGISTRY: 764525110978.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com
+        #AWS-REGION: us-west-2
+        ECR_REGISTRY: 764525110978.dkr.ecr.${{ env.AWS_DEFAULT_REGION }}.amazonaws.com
         ECR_REPOSITORY: alpine
         IMAGE_TAG: 3.12
       run: |
         echo $ECR_REGISTRY
-        echo $AWS_REGION
+        #echo $AWS_REGION
         echo $AWS_DEFAULT_REGION
-        aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
+        aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
         docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
