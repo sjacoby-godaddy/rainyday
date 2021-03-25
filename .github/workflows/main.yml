@@ -35,8 +35,7 @@ jobs:
 
     - name: Pull image from Amazon ECR
       env:
-        AWS_REGION: us-west-2
-        ECR_REGISTRY: 764525110978.dkr.ecr.$AWS_REGION.amazonaws.com
+        ECR_REGISTRY: 764525110978.dkr.ecr.us-west-2.amazonaws.com
         ECR_REPOSITORY: alpine
         IMAGE_TAG: 3.12
       run: |
