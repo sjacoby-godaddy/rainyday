@@ -20,15 +20,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-#    - name: Check out aws-okta-authenticate action
-#      uses: actions/checkout@25a956c84d5dd820d28caab9f86b8d183aeeff3d
-#      with:
-#        repository: gdcorp-actions/aws-okta-authenticate
-#        token: ${{ secrets.GD_ACTIONS_REPO_PAT }}
-#        path: aws-okta-authenticate
+    - name: Check out aws-okta-authenticate action
+      #uses: actions/checkout@25a956c84d5dd820d28caab9f86b8d183aeeff3d
+      uses: ./aws-okta-authenticate
+      with:
+        repository: gdcorp-actions/aws-okta-authenticate
+        token: ${{ secrets.GD_ACTIONS_REPO_PAT }}
+        path: aws-okta-authenticate2
 
     - name: Configure AWS credentials
-      uses: ./aws-okta-authenticate
+      uses: ./aws-okta-authenticate2
       with:
         aws-okta-user: ${{ secrets.AWS_DEV_PRIVATE_JOMAX_USER}}
         aws-okta-pass: ${{ secrets.AWS_DEV_PRIVATE_JOMAX_PASS}}
