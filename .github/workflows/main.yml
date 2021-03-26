@@ -43,12 +43,17 @@ jobs:
         echo "Using: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
         aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
 
-    - name: Checkout
+    - name: Checkout Tartufo Repo
       uses: actions/checkout@25a956c84d5dd820d28caab9f86b8d183aeeff3d
       with:
-        #repository: sjacoby-godaddy/rainyday
-        repository: gdcorp-actions/tartufo@6aed5015c4620256b39be19a7222618b2df63c42
+        repository: sjacoby-godaddy/rainyday
+        #repository: gdcorp-actions/tartufo@6aed5015c4620256b39be19a7222618b2df63c42
         path: local-actions/tartufo
+
+    - name: Checkout target repo for tartufo scanning
+      uses: actions/checkout@25a956c84d5dd820d28caab9f86b8d183aeeff3d
+      with:
+        repository: gdcorp-cp/scomp@3d0fd20bcbb867d93f222a48d2690ece123100f9
 
     - name: Tartufo secret scanning using the Tartufo GitHub Action
       uses: ./local-actions/tartufo
