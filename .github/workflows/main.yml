@@ -20,8 +20,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        repository: sjacoby-godaddy/rainyday
+        path: my-tools
+
     - name: Tartufo secret scanning using the Tartufo GitHub Action
-      uses: ./
+      uses: ./my-tools
       with:
           github_token: ${{ secrets.REPO_CLONE_TOKEN }}
           options: "--regex --json"
