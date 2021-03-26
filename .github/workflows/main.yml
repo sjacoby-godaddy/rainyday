@@ -43,12 +43,17 @@ jobs:
         echo "Using: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
         aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
 
+    - name: Checkout this repo
+      uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+
     - name: Checkout Tartufo Repo
       uses: actions/checkout@25a956c84d5dd820d28caab9f86b8d183aeeff3d
       with:
-        #repository: sjacoby-godaddy/rainyday
-        repository: gdcorp-actions/tartufo@6aed5015c4620256b39be19a7222618b2df63c42
+        repository: sjacoby-godaddy/rainyday
+        #repository: gdcorp-actions/tartufo@6aed5015c4620256b39be19a7222618b2df63c42
+        token: ${{ secrets.REPO_CLONE_TOKEN }} # PAT with read access to gd-actions/tartufo
         path: local-actions/tartufo
+        persist-credentials: false # Do not persist auth token in local git config.
 
 #    - name: Checkout target repo for tartufo scanning
 #      uses: actions/checkout@25a956c84d5dd820d28caab9f86b8d183aeeff3d
