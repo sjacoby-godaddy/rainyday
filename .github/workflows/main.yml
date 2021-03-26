@@ -23,11 +23,12 @@ jobs:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@a17646e2633d1f79886a1530ccce16c95a3bb8dc
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }} # Add a github secret with your Deploy User AccessKeyId from AWS Secrets Manager
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}         # Add a github secret with your Deploy User AccessKeyId from AWS Secrets Manager
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} # Add a github secret with your Deploy User SecretAccessKey from AWS Secrets Manager
-        role-to-assume: arn:aws:iam::664122783931:role/GD-AWS-USA-CTO-JenkinsonAWS-Dev-Private-Deploy # Your deploy role ARN 
-        role-duration-seconds: 7200 # default max is 7200
-        aws-region: us-west-2 # set region you want to target
+        role-to-assume: ${{ secrets.DEPLOY_ROLE_ARN }}              # Your deploy role ARN 
+        #role-to-assume: arn:aws:iam::664122783931:role/GD-AWS-USA-CTO-JenkinsonAWS-Dev-Private-Deploy # Your deploy role ARN
+        role-duration-seconds: 1200                                 # default max is 7200
+        aws-region: us-west-2                                       # set region you want to target
 
     - name: Login to Amazon ECR
       id: login-ecr
@@ -37,19 +38,20 @@ jobs:
       env:
         ECR_REGISTRY: 764525110978.dkr.ecr.${{ env.AWS_DEFAULT_REGION }}.amazonaws.com # Do NOT change (region pulled from above)!
         ECR_REPOSITORY: alpine-tartufo # repo you want to use
-        IMAGE_TAG: v2.4.0 # tag you want to use
+        IMAGE_TAG: v2.4.0 # version tag you want to use
       run: |
         echo "Using: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
         aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
 
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@25a956c84d5dd820d28caab9f86b8d183aeeff3d
       with:
         repository: sjacoby-godaddy/rainyday
-        path: my-tools
+        #repository: gdcorp-actions/tartufo
+        path: local-actions/tartufo
 
     - name: Tartufo secret scanning using the Tartufo GitHub Action
-      uses: ./my-tools
+      uses: ./local-actions/tartufo
       with:
           github_token: ${{ secrets.REPO_CLONE_TOKEN }}
           options: "--regex --json"
