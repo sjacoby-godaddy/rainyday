@@ -46,16 +46,16 @@ jobs:
     - name: Checkout Tartufo Repo
       uses: actions/checkout@25a956c84d5dd820d28caab9f86b8d183aeeff3d
       with:
-        repository: sjacoby-godaddy/rainyday
+        #repository: sjacoby-godaddy/rainyday
         #repository: gdcorp-actions/tartufo@6aed5015c4620256b39be19a7222618b2df63c42
         path: local-actions/tartufo
 
-    - name: Checkout target repo for tartufo scanning
-      uses: actions/checkout@25a956c84d5dd820d28caab9f86b8d183aeeff3d
-      with:
-        repository: gdcorp-cp/scomp@3d0fd20bcbb867d93f222a48d2690ece123100f9
-        token: ${{ secrets.REPO_CLONE_TOKEN }}
-        fetch-depth: 0
+#    - name: Checkout target repo for tartufo scanning
+#      uses: actions/checkout@25a956c84d5dd820d28caab9f86b8d183aeeff3d
+#      with:
+#        repository: gdcorp-cp/scomp@3d0fd20bcbb867d93f222a48d2690ece123100f9
+#        token: ${{ secrets.REPO_CLONE_TOKEN }}
+#        fetch-depth: 0
 
     - name: Tartufo secret scanning using the Tartufo GitHub Action
       uses: ./local-actions/tartufo
