@@ -46,7 +46,7 @@ jobs:
     - name: Checkout Tartufo Repo
       uses: actions/checkout@25a956c84d5dd820d28caab9f86b8d183aeeff3d
       with:
-        #repository: sjacoby-godaddy/rainyday
+        repository: sjacoby-godaddy/rainyday
         #repository: gdcorp-actions/tartufo@6aed5015c4620256b39be19a7222618b2df63c42
         path: local-actions/tartufo
 
