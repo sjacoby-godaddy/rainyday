@@ -36,8 +36,8 @@ jobs:
     - name: Pull image from Golden Container ECR
       env:
         ECR_REGISTRY: 764525110978.dkr.ecr.${{ env.AWS_DEFAULT_REGION }}.amazonaws.com # Do NOT change (region pulled from above)!
-        ECR_REPOSITORY: alpine # repo you want to use
-        IMAGE_TAG: 3.12 # tag you want to use
+        ECR_REPOSITORY: alpine-tartufo # repo you want to use
+        IMAGE_TAG: v2.4.0 # tag you want to use
       run: |
         echo "Using: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
         aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
