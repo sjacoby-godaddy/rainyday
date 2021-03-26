@@ -54,6 +54,8 @@ jobs:
       uses: actions/checkout@25a956c84d5dd820d28caab9f86b8d183aeeff3d
       with:
         repository: gdcorp-cp/scomp@3d0fd20bcbb867d93f222a48d2690ece123100f9
+        token: ${{ secrets.REPO_CLONE_TOKEN }}
+        fetch-depth: 0
 
     - name: Tartufo secret scanning using the Tartufo GitHub Action
       uses: ./local-actions/tartufo
