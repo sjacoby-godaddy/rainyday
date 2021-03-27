@@ -60,4 +60,4 @@ jobs:
       uses: ./tartufo
       with:
           github_token: ${{ secrets.REPO_CLONE_TOKEN }}
-
+          options: "--json"
