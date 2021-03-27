@@ -51,10 +51,9 @@ jobs:
       with:
         #repository: sjacoby-godaddy/rainyday
         repository: gdcorp-actions/tartufo@6aed5015c4620256b39be19a7222618b2df63c42
-        #token: ${{ secrets.REPO_CLONE_TOKEN }} # PAT with read access to gd-actions/tartufo
-        ref: main
+        token: ${{ secrets.REPO_CLONE_TOKEN }} # PAT with read access to gd-actions/tartufo
         path: tartufo
-        persist-credentials: false # Do not persist auth token in local git config.
+        #persist-credentials: false # Do not persist auth token in local git config.
 
 #    - name: Checkout target repo for tartufo scanning
 #      uses: actions/checkout@25a956c84d5dd820d28caab9f86b8d183aeeff3d
