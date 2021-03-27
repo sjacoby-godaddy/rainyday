@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Tartufo Scan from AWS Golden Containers ECR Repo
 
 # Controls when the action will run. 
 on:
@@ -16,11 +16,11 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   deploy:
-    name: Connect AWS ECR
+    name: Tartufo Scan from AWS Golden Containers ECR Repo
     runs-on: ubuntu-latest
 
     steps:
-    - name: Configure AWS credentials
+    - name: Configure AWS credentials for ECR access
       uses: aws-actions/configure-aws-credentials@a17646e2633d1f79886a1530ccce16c95a3bb8dc
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}         # Add a github secret with your Deploy User AccessKeyId from AWS Secrets Manager
@@ -34,7 +34,7 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@41032bd0f8164c350fb597a5e1ec886624de7465
 
-    - name: Pull image from Golden Container ECR
+    - name: Docker login for Golden Containers ECR
       env:
         ECR_REGISTRY: 764525110978.dkr.ecr.${{ env.AWS_DEFAULT_REGION }}.amazonaws.com # Do NOT change (region pulled from above)!
         ECR_REPOSITORY: alpine-tartufo # repo you want to use
