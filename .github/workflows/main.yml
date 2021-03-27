@@ -51,7 +51,7 @@ jobs:
       with:
         #repository: sjacoby-godaddy/rainyday
         repository: gdcorp-actions/tartufo@6aed5015c4620256b39be19a7222618b2df63c42
-        token: ${{ secrets.GD_ACTIONS_REPO_PAT }} # PAT with read access to gd-actions/tartufo
+        #token: ${{ secrets.GD_ACTIONS_REPO_PAT }} # PAT with read access to gd-actions/tartufo
         path: tartufo
         #persist-credentials: false # Do not persist auth token in local git config.
 
